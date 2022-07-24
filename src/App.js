@@ -44,7 +44,7 @@ const unityContext5 = new UnityContext({
 function App() {
   const webcamRef = useRef(null);
   const canvasRef = useRef(null);
-  const [scene, changeScene] = useState(5);
+  const [scene, changeScene] = useState(1);
 
 
   const runPosenet = async () => {
@@ -112,7 +112,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        {/* <Webcam
+        <Webcam
           ref={webcamRef}
           className="Webcam"
           style={{
@@ -125,7 +125,7 @@ function App() {
             width: "960px",
             height: "480px",
           }}
-        />   */}
+        /> 
         {scene === 1 && <Unity unityContext={unityContext1} className="Unity"/> }
         {scene === 2 && <Unity unityContext={unityContext2} className="Unity"/> }
         {scene === 3 && <Unity unityContext={unityContext3} className="Unity"/> }
@@ -135,24 +135,25 @@ function App() {
 
       <div class="container">
         {scene == 1? <div className="sweaterActive" id="1" onClick={(e) => oncChangeScene(e)}>SWEATER</div> : <div className="sweater" id="1" onClick={(e) => oncChangeScene(e)}>SWEATER</div>}
-        <div class="sweater_1" id="1"  onClick={(e) => oncChangeMaterial(e)}></div>
-        <div class="sweater_2" id="2"  onClick={(e) => oncChangeMaterial(e)}></div>
+        
+        {scene == 1 && <div class="sweater_1" id="1"  onClick={(e) => oncChangeMaterial(e)}></div>}
+        {scene == 1 && <div class="sweater_2" id="2"  onClick={(e) => oncChangeMaterial(e)}></div>}
 
         {scene == 2?<div className="jeanswh" id="2" onClick={(e) => oncChangeScene(e)}>JEANS with hearts</div> : <div className="jeanswhActive" id="2" onClick={(e) => oncChangeScene(e)}>JEANS with hearts</div>}
-        <div class="jeanswh_1" id="1"  onClick={(e) => oncChangeMaterial(e)}></div>
-        <div class="jeanswh_2" id="2"  onClick={(e) => oncChangeMaterial(e)}></div>
+        {scene == 2 && <div class="jeanswh_1" id="1"  onClick={(e) => oncChangeMaterial(e)}></div>}
+        {scene == 2 && <div class="jeanswh_2" id="2"  onClick={(e) => oncChangeMaterial(e)}></div>}
 
         {scene == 3?<div className="dressActive" id="3" onClick={(e) => oncChangeScene(e)}>DRESS</div> : <div className="dress" id="3" onClick={(e) => oncChangeScene(e)}>DRESS</div>}
-        <div class="dress_1" id="1"  onClick={(e) => oncChangeMaterial(e)}></div>
-        <div class="dress_2" id="2"  onClick={(e) => oncChangeMaterial(e)}></div>
+        {scene == 3 && <div class="dress_1" id="1"  onClick={(e) => oncChangeMaterial(e)}></div>}
+        {scene == 3 && <div class="dress_2" id="2"  onClick={(e) => oncChangeMaterial(e)}></div>}
 
         {scene == 4?<div className="tshirtActive" id="4" onClick={(e) => oncChangeScene(e)}>T-SHIRT</div> :<div className="tshirt" id="4" onClick={(e) => oncChangeScene(e)}>T-SHIRT</div>}
-        <div class="tshirt_1" id="1"  onClick={(e) => oncChangeMaterial(e)}></div>
-        <div class="tshirt_2" id="2"  onClick={(e) => oncChangeMaterial(e)}></div>
+        {scene == 4 && <div class="tshirt_1" id="1"  onClick={(e) => oncChangeMaterial(e)}></div>}
+        {scene == 4 && <div class="tshirt_2" id="2"  onClick={(e) => oncChangeMaterial(e)}></div>}
 
         {scene == 5?<div className="jeansActive" id="5" onClick={(e) => oncChangeScene(e)}>JEANS</div> :<div className="jeans" id="5" onClick={(e) => oncChangeScene(e)}>JEANS</div>}
-        <div class="jeans_1" id="1"  onClick={(e) => oncChangeMaterial(e)}></div>
-        <div class="jeans_2" id="2"  onClick={(e) => oncChangeMaterial(e)}></div>
+        {scene == 5 && <div class="jeans_1" id="1"  onClick={(e) => oncChangeMaterial(e)}></div>}
+        {scene == 5 && <div class="jeans_2" id="2"  onClick={(e) => oncChangeMaterial(e)}></div>}
       </div>
     </div>
   );

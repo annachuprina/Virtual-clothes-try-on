@@ -175,7 +175,7 @@
 
 .sweater_1 { 
   grid-area: 1 / 2 / 2 / 3; 
-  background: green;
+  background-image: url(/public/materials/sweater_1.png);
   width: 50px;
   height: 50px;
   box-shadow: 0px 0px 10px #000000;
@@ -184,7 +184,7 @@
 }
 
 .sweater_2 { grid-area: 1 / 3 / 2 / 4;
-  background: red;
+  background: url(/public/materials/sweater_2.png);;
   width: 50px;
   height: 50px;
   box-shadow: 0px 0px 10px #000000;
@@ -193,7 +193,7 @@
 }
 
 .jeanswh_1 { grid-area: 2 / 2 / 3 / 3; 
-  background: red;
+  background:url(/public/materials/jeanswh_1.png);
   width: 50px;
   height: 50px;
   box-shadow: 0px 0px 10px #000000;
@@ -201,7 +201,7 @@
   margin-bottom: 10px;}
 
 .jeanswh_2 { grid-area: 2 / 3 / 3 / 4; 
-  background: green;
+  background: url(/public/materials/jeanswh_1-1.png);;
   width: 50px;
   height: 50px;
   box-shadow: 0px 0px 10px #000000;
@@ -252,7 +252,7 @@
   padding: 10px; }
 
 .dress_1 { grid-area: 3 / 2 / 4 / 3; 
-  background: green;
+  background: url(/public/materials/dress_1.png);;
   width: 50px;
   height: 50px;
   box-shadow: 0px 0px 10px #000000;
@@ -260,7 +260,7 @@
   margin-bottom: 10px;}
 
 .dress_2 { grid-area: 3 / 3 / 4 / 4; 
-  background: red;
+  background: url(/public/materials/dress_2.png);;
   width: 50px;
   height: 50px;
   box-shadow: 0px 0px 10px #000000;
@@ -290,7 +290,7 @@
 }
 
 .tshirt_1 { grid-area: 4 / 2 / 5 / 3; 
-  background: green;
+  background: url(/public/materials/tshirt_1.png);;
   width: 50px;
   height: 50px;
   box-shadow: 0px 0px 10px #000000;
@@ -298,7 +298,7 @@
   margin-bottom: 10px;}
 
 .tshirt_2 { grid-area: 4 / 3 / 5 / 4;
-  background: red;
+  background: url(/public/materials/tshirt_2.png);;
   width: 50px;
   height: 50px;
   box-shadow: 0px 0px 10px #000000;
@@ -327,7 +327,7 @@
 
 .jeans_1 { grid-area: 5 / 2 / 6 / 3; 
 
-  background: red;
+  background: url(/public/materials/jeans_1.png);;
   width: 50px;
   height: 50px;
   box-shadow: 0px 0px 10px #000000;
@@ -336,7 +336,7 @@
 
 .jeans_2 { grid-area: 5 / 3 / 6 / 4;
 
-  background: green;
+  background: url(/public/materials/jeans_2.png);;
   width: 50px;
   height: 50px;
   box-shadow: 0px 0px 10px #000000;
