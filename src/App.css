@@ -1,0 +1,345 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.Webcam{
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+}
+.Canvas{
+  position: absolute;
+  margin-left: "auto";
+  margin-right: "auto";
+  left: 0;
+  right: 0;
+  text-align: center;
+  z-index: 9;
+  width: 640;
+  height: 480;
+}
+.Unity{
+  position: absolute;
+  margin-left: "auto";
+  margin-right: "auto";
+  left: 0px;
+  text-align: center;
+  z-index: 10;
+  width: auto;
+  height: 480px;
+}
+.wrapper {
+  position: absolute;
+  top: 0px;
+  right: 10px;
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: 100px 100px;
+  grid-auto-columns: 100px;
+  background-color: #fff;
+  color: #444;
+}
+.buttons{
+
+}
+.button{
+  width: 100px;
+  height: auto;
+  background-color: #282c34;
+  box-shadow: 0px 0px 10px #000000;
+  border-radius: 10px;
+  margin-bottom: 30px;
+  color: #E1E1E1;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.buttonActive{
+  position: relative;
+  width: 100px;
+  height: auto;
+  background-color: #282c34;
+  box-shadow: 0px 0px 10px grey;
+  border-radius: 10px;
+  margin-bottom: 30px;
+  color: #E1E1E1;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.button:hover{
+  box-shadow: 0px 0px 50px #000000;
+}
+
+.materialsSweater{
+  grid-column: 2;
+  grid-row: 1;
+}
+.materialsJeansWH{
+  grid-column: 2;
+  grid-row: 3;
+}
+.materialsDress{
+}
+.materialsTShirt{
+}
+.materialsJeans{
+}
+.materialJeans_1{
+  background: #f00;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  box-shadow: 0px 0px 10px #000000;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.materialJeans_2{
+  background: green;
+  width: 50px;
+  height: 50px;
+  box-shadow: 0px 0px 10px #000000;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.container { 
+  position: absolute;
+  top: 10px;
+  right: 10px; 
+  display: grid;
+  grid-template-columns: 0.1fr 0.05fr 0.05fr;
+  grid-template-rows: 0.5fr 0.5fr 0.5fr 0.5fr 0.5fr;
+  gap: 10px 10px;
+  grid-auto-flow: row;
+}
+
+.sweater{ 
+  grid-area: 1 / 1 / 2 / 2;
+  width: 100px;
+  height: 50px;
+  background-color: #282c34;
+  box-shadow: 0px 0px 10px black;
+  border-radius: 10px;
+  margin-bottom: 30px;
+  color: #E1E1E1;
+  padding: 10px; 
+}
+.sweaterActive{
+  grid-area: 1 / 1 / 2 / 2;
+  width: 100px;
+  height: 50px;
+  background-color: #282c34;
+  box-shadow: 0px 0px 10px grey;
+  border-radius: 10px;
+  margin-bottom: 30px;
+  color: #E1E1E1;
+  padding: 10px; 
+}
+
+.sweater_1 { 
+  grid-area: 1 / 2 / 2 / 3; 
+  background: green;
+  width: 50px;
+  height: 50px;
+  box-shadow: 0px 0px 10px #000000;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.sweater_2 { grid-area: 1 / 3 / 2 / 4;
+  background: red;
+  width: 50px;
+  height: 50px;
+  box-shadow: 0px 0px 10px #000000;
+  border-radius: 10px;
+  margin-bottom: 10px; 
+}
+
+.jeanswh_1 { grid-area: 2 / 2 / 3 / 3; 
+  background: red;
+  width: 50px;
+  height: 50px;
+  box-shadow: 0px 0px 10px #000000;
+  border-radius: 10px;
+  margin-bottom: 10px;}
+
+.jeanswh_2 { grid-area: 2 / 3 / 3 / 4; 
+  background: green;
+  width: 50px;
+  height: 50px;
+  box-shadow: 0px 0px 10px #000000;
+  border-radius: 10px;
+  margin-bottom: 10px;}
+
+.jeanswh { 
+  grid-area: 2 / 1 / 3 / 2;
+  width: 100px;
+  height: 50px;
+  background-color: #282c34;
+  box-shadow: 0px 0px 10px grey;
+  border-radius: 10px;
+  margin-bottom: 30px;
+  color: #E1E1E1;
+  padding: 10px;  
+}
+
+.jeanswhActive{
+  grid-area: 2 / 1 / 3 / 2;
+  width: 100px;
+  height: 50px;
+  background-color: #282c34;
+  box-shadow: 0px 0px 10px black;
+  border-radius: 10px;
+  margin-bottom: 30px;
+  color: #E1E1E1;
+  padding: 10px; 
+}
+.dress { grid-area: 3 / 1 / 4 / 2;
+  width: 100px;
+  height: 50px;
+  background-color: #282c34;
+  box-shadow: 0px 0px 10px black;
+  border-radius: 10px;
+  margin-bottom: 30px;
+  color: #E1E1E1;
+  padding: 10px; }
+
+.dressActive { grid-area: 3 / 1 / 4 / 2;
+  width: 100px;
+  height: 50px;
+  background-color: #282c34;
+  box-shadow: 0px 0px 10px grey;
+  border-radius: 10px;
+  margin-bottom: 30px;
+  color: #E1E1E1;
+  padding: 10px; }
+
+.dress_1 { grid-area: 3 / 2 / 4 / 3; 
+  background: green;
+  width: 50px;
+  height: 50px;
+  box-shadow: 0px 0px 10px #000000;
+  border-radius: 10px;
+  margin-bottom: 10px;}
+
+.dress_2 { grid-area: 3 / 3 / 4 / 4; 
+  background: red;
+  width: 50px;
+  height: 50px;
+  box-shadow: 0px 0px 10px #000000;
+  border-radius: 10px;
+  margin-bottom: 10px;}
+
+.tshirt { grid-area: 4 / 1 / 5 / 2; 
+  width: 100px;
+  height: 50px;
+  background-color: #282c34;
+  box-shadow: 0px 0px 10px black;
+  border-radius: 10px;
+  margin-bottom: 30px;
+  color: #E1E1E1;
+  padding: 10px;
+}
+
+.tshirtActive { grid-area: 4 / 1 / 5 / 2; 
+  width: 100px;
+  height: 50px;
+  background-color: #282c34;
+  box-shadow: 0px 0px 10px grey;
+  border-radius: 10px;
+  margin-bottom: 30px;
+  color: #E1E1E1;
+  padding: 10px;
+}
+
+.tshirt_1 { grid-area: 4 / 2 / 5 / 3; 
+  background: green;
+  width: 50px;
+  height: 50px;
+  box-shadow: 0px 0px 10px #000000;
+  border-radius: 10px;
+  margin-bottom: 10px;}
+
+.tshirt_2 { grid-area: 4 / 3 / 5 / 4;
+  background: red;
+  width: 50px;
+  height: 50px;
+  box-shadow: 0px 0px 10px #000000;
+  border-radius: 10px;
+  margin-bottom: 10px; }
+
+.jeans { grid-area: 5 / 1 / 6 / 2; 
+  width: 100px;
+  height: 50px;
+  background-color: #282c34;
+  box-shadow: 0px 0px 10px black;
+  border-radius: 10px;
+  margin-bottom: 30px;
+  color: #E1E1E1;
+  padding: 10px;}
+
+.jeansActive { grid-area: 5 / 1 / 6 / 2; 
+  width: 100px;
+  height: 50px;
+  background-color: #282c34;
+  box-shadow: 0px 0px 10px grey;
+  border-radius: 10px;
+  margin-bottom: 30px;
+  color: #E1E1E1;
+  padding: 10px;}
+
+.jeans_1 { grid-area: 5 / 2 / 6 / 3; 
+
+  background: red;
+  width: 50px;
+  height: 50px;
+  box-shadow: 0px 0px 10px #000000;
+  border-radius: 10px;
+  margin-bottom: 10px;}
+
+.jeans_2 { grid-area: 5 / 3 / 6 / 4;
+
+  background: green;
+  width: 50px;
+  height: 50px;
+  box-shadow: 0px 0px 10px #000000;
+  border-radius: 10px;
+  margin-bottom: 10px; }
+
