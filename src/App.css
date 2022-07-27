@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  background-color: #282c34;
 }
 
 .App-logo {
@@ -10,6 +11,7 @@
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
+    background-color: #282c34;
   }
 }
 
@@ -58,7 +60,7 @@
   left: 0px;
   text-align: center;
   z-index: 10;
-  width: auto;
+  width: 640px;
   height: 480px;
 }
 .wrapper {
@@ -144,15 +146,16 @@
   top: 10px;
   right: 10px; 
   display: grid;
-  grid-template-columns: 0.1fr 0.05fr 0.05fr;
+  grid-template-columns: 0.05fr 0.05fr 0.05fr;
   grid-template-rows: 0.5fr 0.5fr 0.5fr 0.5fr 0.5fr;
-  gap: 10px 10px;
+  gap: 5px 10px;
   grid-auto-flow: row;
+  font-size: 12px;
 }
 
 .sweater{ 
   grid-area: 1 / 1 / 2 / 2;
-  width: 100px;
+  width: 50px;
   height: 50px;
   background-color: #282c34;
   box-shadow: 0px 0px 10px black;
@@ -163,7 +166,7 @@
 }
 .sweaterActive{
   grid-area: 1 / 1 / 2 / 2;
-  width: 100px;
+  width: 50px;
   height: 50px;
   background-color: #282c34;
   box-shadow: 0px 0px 10px grey;
@@ -210,7 +213,7 @@
 
 .jeanswh { 
   grid-area: 2 / 1 / 3 / 2;
-  width: 100px;
+  width: 50px;
   height: 50px;
   background-color: #282c34;
   box-shadow: 0px 0px 10px grey;
@@ -222,7 +225,7 @@
 
 .jeanswhActive{
   grid-area: 2 / 1 / 3 / 2;
-  width: 100px;
+  width: 50px;
   height: 50px;
   background-color: #282c34;
   box-shadow: 0px 0px 10px black;
@@ -232,7 +235,7 @@
   padding: 10px; 
 }
 .dress { grid-area: 3 / 1 / 4 / 2;
-  width: 100px;
+  width: 50px;
   height: 50px;
   background-color: #282c34;
   box-shadow: 0px 0px 10px black;
@@ -242,7 +245,7 @@
   padding: 10px; }
 
 .dressActive { grid-area: 3 / 1 / 4 / 2;
-  width: 100px;
+  width: 50px;
   height: 50px;
   background-color: #282c34;
   box-shadow: 0px 0px 10px grey;
@@ -268,7 +271,7 @@
   margin-bottom: 10px;}
 
 .tshirt { grid-area: 4 / 1 / 5 / 2; 
-  width: 100px;
+  width: 50px;
   height: 50px;
   background-color: #282c34;
   box-shadow: 0px 0px 10px black;
@@ -279,7 +282,7 @@
 }
 
 .tshirtActive { grid-area: 4 / 1 / 5 / 2; 
-  width: 100px;
+  width: 50px;
   height: 50px;
   background-color: #282c34;
   box-shadow: 0px 0px 10px grey;
@@ -306,7 +309,7 @@
   margin-bottom: 10px; }
 
 .jeans { grid-area: 5 / 1 / 6 / 2; 
-  width: 100px;
+  width: 50px;
   height: 50px;
   background-color: #282c34;
   box-shadow: 0px 0px 10px black;
@@ -316,7 +319,7 @@
   padding: 10px;}
 
 .jeansActive { grid-area: 5 / 1 / 6 / 2; 
-  width: 100px;
+  width: 50px;
   height: 50px;
   background-color: #282c34;
   box-shadow: 0px 0px 10px grey;
