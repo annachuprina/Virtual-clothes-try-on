@@ -60,8 +60,8 @@
   left: 0px;
   text-align: center;
   z-index: 10;
-  width: 640px;
-  height: 960px;
+  width: auto;
+  height: 480px;
 }
 .wrapper {
   position: absolute;
