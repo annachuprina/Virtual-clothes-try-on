@@ -59,7 +59,7 @@ function App() {
   const runPosenet = async () => {
     const net = await posenet.load({
       inputResolution: { width: 960, height: 480 },
-      scale: 0.8,
+      scale: 1,
     });
     //
     setInterval(() => {
