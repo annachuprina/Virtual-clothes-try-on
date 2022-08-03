@@ -5,8 +5,6 @@ import './App.css';
 import * as tf from "@tensorflow/tfjs"
 import * as posenet from "@tensorflow-models/posenet"
 import Webcam from "react-webcam"
-import { useMediaQuery } from 'react-responsive' 
-import DeviceOrientation, { Orientation } from 'react-screen-orientation'
 
 const unityContext1 = new UnityContext({
   loaderUrl: "./webgl1/Build/webgl1.loader.js",
@@ -46,15 +44,6 @@ function App() {
   const webcamRef = useRef(null);
   const canvasRef = useRef(null);
   const [scene, changeScene] = useState(1);
-  const [keypointsVis, setVisability] = useState(true);
-
-  // https://www.npmjs.com/package/react-responsive
-  const isDesktopOrLaptop = useMediaQuery({
-    query: '(min-width: 1224px)'
-  })
-  const isTabletOrMobile = useMediaQuery({ 
-    query: '(max-width: 1224px)'
-  })
 
   const runPosenet = async () => {
     const net = await posenet.load({
@@ -73,26 +62,19 @@ function App() {
       webcamRef.current !== null &&
       webcamRef.current.video.readyState === 4
     ) {
-      // Get Video Properties
       const video = webcamRef.current.video;
       const videoWidth = webcamRef.current.video.videoWidth;
       const videoHeight = webcamRef.current.video.videoHeight;
-
-      // Set video width
       webcamRef.current.video.width = videoWidth;
       webcamRef.current.video.height = videoHeight;
 
-      // Make Detections
-      const pose = await net.estimateSinglePose(video);
-      //console.log(JSON.stringify(pose));
+      const pose = await net.estimateSinglePose(video, {
+        flipHorizontal: false,
+        decodingMethod: "single-person"
+      });
+      console.log(JSON.stringify(pose));
       if (scene === 1){
-        for (let i = 5; i < 11; i++ ){
-          if (pose.keypoints[i].position.x == 0 || pose.keypoints[i].position.x == 1)
-            setVisability(false)
-        }
-        if(keypointsVis == true){
-          unityContext1.send("Keypoints", "GetValues", JSON.stringify(pose))
-        }
+        unityContext1.send("Keypoints", "GetValues", JSON.stringify(pose))
       }
       else if (scene === 2)
         unityContext2.send("Keypoints", "GetValues", JSON.stringify(pose))
@@ -103,17 +85,14 @@ function App() {
       else if (scene === 5)
         unityContext5.send("Keypoints", "GetValues", JSON.stringify(pose))
     }  
-    //unityContext.send("Keypoints", "GetValues", 111);
   };
 
   runPosenet();
 
   function oncChangeScene(e){
-    //unityContext.send("SceneControl", "ChangeScene", e.target.id);
     changeScene(parseInt(e.target.id))
   }
   function oncChangeMaterial(e){
-    //unityContext.send("SceneControl", "ChangeScene", e.target.id);
     if (scene === 1)
         unityContext1.send("MatControl", "ChangeMaterial", "sweater_" +e.target.id)
     else if (scene === 2)
@@ -127,7 +106,7 @@ function App() {
   }
   return (
     <div className="App">
-      {isDesktopOrLaptop && <><header className="App-header">
+      <header className="App-header">
         <Webcam
           ref={webcamRef}
           className="Webcam"
@@ -142,97 +121,36 @@ function App() {
             height: "480px",
           }}
         /> 
-        {scene == 1 && keypointsVis == true && <Unity unityContext={unityContext1} className="Unity"/> }
-        {scene == 2 && keypointsVis == true && <Unity unityContext={unityContext2} className="Unity"/> }
-        {scene == 3 && keypointsVis == true && <Unity unityContext={unityContext3} className="Unity"/> }
-        {scene == 4 && keypointsVis == true && <Unity unityContext={unityContext4} className="Unity"/> }
-        {scene == 5 && keypointsVis == true && <Unity unityContext={unityContext5} className="Unity"/> }
+        {scene === 1 && <Unity unityContext={unityContext1} className="Unity"/> }
+        {scene === 2 && <Unity unityContext={unityContext2} className="Unity"/> }
+        {scene === 3 && <Unity unityContext={unityContext3} className="Unity"/> }
+        {scene === 4 && <Unity unityContext={unityContext4} className="Unity"/> }
+        {scene === 5 && <Unity unityContext={unityContext5} className="Unity"/> }
 
-        {scene == 1 && keypointsVis == false && <div className="message"/> }
-        {scene == 2 && keypointsVis == false && <div className="message"/> }
-        {scene == 3 && keypointsVis == false && <div className="message"/> }
-        {scene == 4 && keypointsVis == false && <div className="message"/> }
-        {scene == 5 && keypointsVis == false && <div className="message"/> }
       </header>
 
       <div class="container">
-        {scene == 1? <div className="sweaterActive" id="1" onClick={(e) => oncChangeScene(e)}>SWEATER</div> : <div className="sweater" id="1" onClick={(e) => oncChangeScene(e)}>SWEATER</div>}
+        {scene === 1? <div className="sweaterActive" id="1" onClick={(e) => oncChangeScene(e)}>SWEATER</div> : <div className="sweater" id="1" onClick={(e) => oncChangeScene(e)}>SWEATER</div>}
         
-        {scene == 1 && <div class="sweater_1" id="1"  onClick={(e) => oncChangeMaterial(e)}></div>}
-        {scene == 1 && <div class="sweater_2" id="2"  onClick={(e) => oncChangeMaterial(e)}></div>}
+        {scene === 1 && <div class="sweater_1" id="1"  onClick={(e) => oncChangeMaterial(e)}></div>}
+        {scene === 1 && <div class="sweater_2" id="2"  onClick={(e) => oncChangeMaterial(e)}></div>}
 
-        {scene == 2?<div className="jeanswh" id="2" onClick={(e) => oncChangeScene(e)}>JEANS with hearts</div> : <div className="jeanswhActive" id="2" onClick={(e) => oncChangeScene(e)}>JEANS with hearts</div>}
-        {scene == 2 && <div class="jeanswh_1" id="1"  onClick={(e) => oncChangeMaterial(e)}></div>}
-        {scene == 2 && <div class="jeanswh_2" id="2"  onClick={(e) => oncChangeMaterial(e)}></div>}
+        {scene === 2?<div className="jeanswh" id="2" onClick={(e) => oncChangeScene(e)}>JEANS with hearts</div> : <div className="jeanswhActive" id="2" onClick={(e) => oncChangeScene(e)}>JEANS with hearts</div>}
+        {scene === 2 && <div class="jeanswh_1" id="1"  onClick={(e) => oncChangeMaterial(e)}></div>}
+        {scene === 2 && <div class="jeanswh_2" id="2"  onClick={(e) => oncChangeMaterial(e)}></div>}
 
-        {scene == 3?<div className="dressActive" id="3" onClick={(e) => oncChangeScene(e)}>DRESS</div> : <div className="dress" id="3" onClick={(e) => oncChangeScene(e)}>DRESS</div>}
-        {scene == 3 && <div class="dress_1" id="1"  onClick={(e) => oncChangeMaterial(e)}></div>}
-        {scene == 3 && <div class="dress_2" id="2"  onClick={(e) => oncChangeMaterial(e)}></div>}
+        {scene === 3?<div className="dressActive" id="3" onClick={(e) => oncChangeScene(e)}>DRESS</div> : <div className="dress" id="3" onClick={(e) => oncChangeScene(e)}>DRESS</div>}
+        {scene === 3 && <div class="dress_1" id="1"  onClick={(e) => oncChangeMaterial(e)}></div>}
+        {scene === 3 && <div class="dress_2" id="2"  onClick={(e) => oncChangeMaterial(e)}></div>}
 
-        {scene == 4?<div className="tshirtActive" id="4" onClick={(e) => oncChangeScene(e)}>T-SHIRT</div> :<div className="tshirt" id="4" onClick={(e) => oncChangeScene(e)}>T-SHIRT</div>}
-        {scene == 4 && <div class="tshirt_1" id="1"  onClick={(e) => oncChangeMaterial(e)}></div>}
-        {scene == 4 && <div class="tshirt_2" id="2"  onClick={(e) => oncChangeMaterial(e)}></div>}
+        {scene === 4?<div className="tshirtActive" id="4" onClick={(e) => oncChangeScene(e)}>T-SHIRT</div> :<div className="tshirt" id="4" onClick={(e) => oncChangeScene(e)}>T-SHIRT</div>}
+        {scene === 4 && <div class="tshirt_1" id="1"  onClick={(e) => oncChangeMaterial(e)}></div>}
+        {scene === 4 && <div class="tshirt_2" id="2"  onClick={(e) => oncChangeMaterial(e)}></div>}
 
-        {scene == 5?<div className="jeansActive" id="5" onClick={(e) => oncChangeScene(e)}>JEANS</div> :<div className="jeans" id="5" onClick={(e) => oncChangeScene(e)}>JEANS</div>}
-        {scene == 5 && <div class="jeans_1" id="1"  onClick={(e) => oncChangeMaterial(e)}></div>}
-        {scene == 5 && <div class="jeans_2" id="2"  onClick={(e) => oncChangeMaterial(e)}></div>}
+        {scene === 5?<div className="jeansActive" id="5" onClick={(e) => oncChangeScene(e)}>JEANS</div> :<div className="jeans" id="5" onClick={(e) => oncChangeScene(e)}>JEANS</div>}
+        {scene === 5 && <div class="jeans_1" id="1"  onClick={(e) => oncChangeMaterial(e)}></div>}
+        {scene === 5 && <div class="jeans_2" id="2"  onClick={(e) => oncChangeMaterial(e)}></div>}
       </div>
-      </>}
-      {isTabletOrMobile &&
-        <DeviceOrientation lockOrientation={'landscape'}>
-          <Orientation orientation='landscape' alwaysRender={false}>
-          <div>
-            <Webcam
-            ref={webcamRef}
-            className="Webcam"
-            style={{
-              position: "absolute",
-              marginLeft: "auto",
-              marginRight: "auto",
-              left: 0,
-              textAlign: "center",
-              zindex: 9,
-              width: "640px",
-              height: "480px",
-            }}
-          /> 
-          {scene == 1 && keypointsVis == true && <Unity unityContext={unityContext1} className="Unity"/> }
-          {scene == 2 && keypointsVis == true && <Unity unityContext={unityContext2} className="Unity"/> }
-          {scene == 3 && keypointsVis == true && <Unity unityContext={unityContext3} className="Unity"/> }
-          {scene == 4 && keypointsVis == true && <Unity unityContext={unityContext4} className="Unity"/> }
-          {scene == 5 && keypointsVis == true && <Unity unityContext={unityContext5} className="Unity"/> }
-
-          <div class="container">
-            {scene == 1? <div className="sweaterActive" id="1" onClick={(e) => oncChangeScene(e)}>SWEATER</div> : <div className="sweater" id="1" onClick={(e) => oncChangeScene(e)}>SWEATER</div>}
-            
-            {scene == 1 && <div class="sweater_1" id="1"  onClick={(e) => oncChangeMaterial(e)}></div>}
-            {scene == 1 && <div class="sweater_2" id="2"  onClick={(e) => oncChangeMaterial(e)}></div>}
-
-            {scene == 2?<div className="jeanswh" id="2" onClick={(e) => oncChangeScene(e)}>JEANS with hearts</div> : <div className="jeanswhActive" id="2" onClick={(e) => oncChangeScene(e)}>JEANS with hearts</div>}
-            {scene == 2 && <div class="jeanswh_1" id="1"  onClick={(e) => oncChangeMaterial(e)}></div>}
-            {scene == 2 && <div class="jeanswh_2" id="2"  onClick={(e) => oncChangeMaterial(e)}></div>}
-
-            {scene == 3?<div className="dressActive" id="3" onClick={(e) => oncChangeScene(e)}>DRESS</div> : <div className="dress" id="3" onClick={(e) => oncChangeScene(e)}>DRESS</div>}
-            {scene == 3 && <div class="dress_1" id="1"  onClick={(e) => oncChangeMaterial(e)}></div>}
-            {scene == 3 && <div class="dress_2" id="2"  onClick={(e) => oncChangeMaterial(e)}></div>}
-
-            {scene == 4?<div className="tshirtActive" id="4" onClick={(e) => oncChangeScene(e)}>T-SHIRT</div> :<div className="tshirt" id="4" onClick={(e) => oncChangeScene(e)}>T-SHIRT</div>}
-            {scene == 4 && <div class="tshirt_1" id="1"  onClick={(e) => oncChangeMaterial(e)}></div>}
-            {scene == 4 && <div class="tshirt_2" id="2"  onClick={(e) => oncChangeMaterial(e)}></div>}
-
-            {scene == 5?<div className="jeansActive" id="5" onClick={(e) => oncChangeScene(e)}>JEANS</div> :<div className="jeans" id="5" onClick={(e) => oncChangeScene(e)}>JEANS</div>}
-            {scene == 5 && <div class="jeans_1" id="1"  onClick={(e) => oncChangeMaterial(e)}></div>}
-            {scene == 5 && <div class="jeans_2" id="2"  onClick={(e) => oncChangeMaterial(e)}></div>}
-          </div>
-          </div>
-          </Orientation>
-          <Orientation orientation='portrait' alwaysRender={false}>
-            <div>
-              <p>Rotate device</p>
-            </div>
-          </Orientation>
-        </DeviceOrientation>
-      }
     </div>
   );
 }
