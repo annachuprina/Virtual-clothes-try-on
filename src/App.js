@@ -40,10 +40,28 @@ const unityContext5 = new UnityContext({
   codeUrl: "./webgl5/Build/webgl5.wasm",
 })
 
+
 function App() {
   const webcamRef = useRef(null);
   const canvasRef = useRef(null);
   const [scene, changeScene] = useState(1);
+  const [loading, setLoading] = useState(0);
+
+  unityContext1.on("progress", (progression) => {
+    setLoading(progression)
+  });
+  unityContext2.on("progress", (progression) => {
+    setLoading(progression)
+  });
+  unityContext3.on("progress", (progression) => {
+    setLoading(progression)
+  });
+  unityContext4.on("progress", (progression) => {
+    setLoading(progression)
+  });
+  unityContext5.on("progress", (progression) => {
+    setLoading(progression)
+  });
 
   const runPosenet = async () => {
     const net = await posenet.load({
@@ -86,8 +104,9 @@ function App() {
         unityContext5.send("Keypoints", "GetValues", JSON.stringify(pose))
     }  
   };
-
-  runPosenet();
+  if (loading === 1){
+    runPosenet();
+  }
 
   function oncChangeScene(e){
     changeScene(parseInt(e.target.id))
@@ -151,6 +170,8 @@ function App() {
         {scene === 5 && <div class="jeans_1" id="1"  onClick={(e) => oncChangeMaterial(e)}></div>}
         {scene === 5 && <div class="jeans_2" id="2"  onClick={(e) => oncChangeMaterial(e)}></div>}
       </div>
+      
+      {loading !== 1 && <div className="loading">Loading... {loading * 100}%</div>}
     </div>
   );
 }
