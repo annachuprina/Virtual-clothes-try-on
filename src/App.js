@@ -48,19 +48,19 @@ function App() {
   const [loading, setLoading] = useState(0);
 
   unityContext1.on("progress", (progression) => {
-    setLoading(progression)
+    setLoading(Math.round10(progression, 1))
   });
   unityContext2.on("progress", (progression) => {
-    setLoading(progression)
+    setLoading(Math.round10(progression, 1))
   });
   unityContext3.on("progress", (progression) => {
-    setLoading(progression)
+    setLoading(Math.round10(progression, 1))
   });
   unityContext4.on("progress", (progression) => {
-    setLoading(progression)
+    setLoading(Math.round10(progression, 1))
   });
   unityContext5.on("progress", (progression) => {
-    setLoading(progression)
+    setLoading(Math.round10(progression, 1))
   });
 
   const runPosenet = async () => {
@@ -70,11 +70,11 @@ function App() {
     });
     //
     setInterval(() => {
-      detect(net);
+      detectPose(net);
     }, 100);
   };
 
-  const detect = async (net) => {
+  const detectPose = async (net) => {
     if (
       typeof webcamRef.current !== "undefined" &&
       webcamRef.current !== null &&
