@@ -104,7 +104,7 @@ function App() {
         unityContext5.send("Keypoints", "GetValues", JSON.stringify(pose))
     }  
   };
-  if (loading === 1){
+  if (loading  !== 1){
     runPosenet();
   }
 
@@ -171,7 +171,7 @@ function App() {
         {scene === 5 && <div class="jeans_2" id="2"  onClick={(e) => oncChangeMaterial(e)}></div>}
       </div>
       
-      {loading !== 1 && <div className="loading">Loading... {loading * 100}%</div>}
+      {loading * 100 !== 100 && <div className="loading">Loading... {loading * 100}%</div>}
     </div>
   );
 }
